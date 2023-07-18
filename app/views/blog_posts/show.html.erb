@@ -1,0 +1,10 @@
+<%= link_to "Back to Root", blog_posts_path %>
+<% if @blog_post.present? %>
+<h1><%= @blog_post.title %></h1>
+<%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>
+<%= @blog_post.content %>
+<%= @blog_post.published_at.strftime('%b %e %Y') if @blog_post.published_at.present? %>
+<div>
+<%= link_to 'Edit', edit_blog_post_path(@blog_post) if user_signed_in? %>
+</div>
+<% end%>

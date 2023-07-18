@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: blog_posts
+#
+#  id           :bigint           not null, primary key
+#  published_at :datetime
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+draft:
+  title: Draft Post
+  body: MyText
+  published_at: nil
+
+scheduled:
+  title: Scheduled Post
+  body: MyText
+  published_at: <%= 1.year.from_now %>
+
+published:
+  title: Published Post
+  body: MyText
+  published_at: <%= 1.year.ago %>

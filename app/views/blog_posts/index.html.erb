@@ -1,0 +1,24 @@
+<h1>Blog Posts</h1>
+<%= link_to 'New Post', new_blog_post_path if user_signed_in? %>
+<% @blog_posts.each do |post| %>
+  <div>
+    <h2><%= link_to post.title, post %></h2>
+    <%= image_tag(post.cover_image, size: "200x200") if post.cover_image.present? %>
+    <% if post.draft? %>
+      <div class="bg-blue-400 p-2 text-white rounded">Draft</div>
+    <% elsif post.scheduled? %>
+      <div class="bg-gray-400 p-2 text-green-900 rounded">Scheduled</div>
+    <% end %>
+  </div>
+    Created at <%= link_to post.created_at.strftime("%d %b %Y at %H:%M") %>
+    <br>
+    <% if post.published_at.present? %>
+    Published At     <%= link_to post.published_at.strftime("%d %b %Y at %H:%M") %>
+    <% end -%>
+  <% end -%>
+
+<% if @pagy.pages > 1 %>
+<div class="my-16">
+<%== pagy_nav(@pagy) %>
+</div>
+<% end -%>
